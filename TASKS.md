@@ -127,7 +127,7 @@ Each task contains: ID, objetivo, arquivos esperados, critérios de aceite, coma
   - `cd services/api && pytest tests/test_auth.py`
   - `cd services/api && pytest`
 - dependências: T-004
-- status: pending
+- status: done
 
 ### T-006 - Restaurant, users, tables and products CRUD
 
