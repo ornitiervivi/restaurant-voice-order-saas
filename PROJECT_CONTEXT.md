@@ -87,4 +87,4 @@ The repository currently contains SDD/harness documentation and planning artifac
 
 ## Last meaningful update
 
-2026-06-15: Completed T-007 order lifecycle backend for opening/resuming table orders, adding explicit confirmed items, station status updates, history and close-order rejection of new items.
+2026-06-15: Completed T-008 realtime WebSocket backend for authenticated station delivery of confirmed order item and status-update events with tenant/station scoping and MVP replay by event id.

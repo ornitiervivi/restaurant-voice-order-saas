@@ -12,6 +12,7 @@ from src.application.orders.use_cases import ManageOrders, OrderNotFoundError, O
 from src.domain.admin import Station
 from src.domain.order import OrderItemStatus, OrderStatus
 from src.domain.user import User
+from src.infrastructure.realtime import realtime_hub
 
 router = APIRouter(prefix="/restaurants/{restaurant_id}/orders", tags=["orders"])
 _repository = InMemoryOrderRepository()
@@ -49,7 +50,7 @@ class UpdateItemStatusRequest(BaseModel):
 
 
 def _use_case() -> ManageOrders:
-    return ManageOrders(_repository)
+    return ManageOrders(_repository, realtime_hub)
 
 
 def _translate_errors(func):

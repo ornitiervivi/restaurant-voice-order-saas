@@ -3,6 +3,7 @@
 from typing import Protocol
 
 from src.application.auth.use_cases import AuthorizeRestaurantRole
+from src.application.realtime.events import RealtimeEventPublisher
 from src.domain.admin import Product, RestaurantTable, Station
 from src.domain.order import Order, OrderItem, OrderItemStatus, OrderStatus
 from src.domain.user import User, UserRole
@@ -35,8 +36,9 @@ class OrderStateError(Exception):
 class ManageOrders:
     """Use case boundary for waiter order lifecycle and station item status updates."""
 
-    def __init__(self, repository: OrderRepository) -> None:
+    def __init__(self, repository: OrderRepository, realtime: RealtimeEventPublisher | None = None) -> None:
         self._repository = repository
+        self._realtime = realtime
         self._authorize = AuthorizeRestaurantRole()
 
     def open_or_resume_order(self, actor: User, restaurant_id: int, table_id: int) -> Order:
@@ -61,7 +63,10 @@ class ManageOrders:
         product = self._repository.get_product(restaurant_id, product_id)
         if product is None or not product.is_available:
             raise OrderNotFoundError("Available product not found.")
-        return self._repository.add_confirmed_item(order, product, quantity, notes, actor.id)
+        item = self._repository.add_confirmed_item(order, product, quantity, notes, actor.id)
+        if self._realtime is not None:
+            self._realtime.publish_confirmed_order_item(item)
+        return item
 
     def update_item_status(self, actor: User, restaurant_id: int, item_id: int, status: OrderItemStatus) -> OrderItem:
         allowed_roles = {UserRole.ADMIN}
@@ -77,7 +82,10 @@ class ManageOrders:
             raise OrderStateError("Kitchen users can update kitchen items only.")
         if actor.role == UserRole.BAR and item.station != Station.BAR:
             raise OrderStateError("Bar users can update bar items only.")
-        return self._repository.update_item_status(restaurant_id, item_id, status)
+        updated = self._repository.update_item_status(restaurant_id, item_id, status)
+        if self._realtime is not None:
+            self._realtime.publish_order_item_status_changed(updated)
+        return updated
 
     def close_order(self, actor: User, restaurant_id: int, order_id: int) -> Order:
         self._authorize.execute(actor, restaurant_id, {UserRole.WAITER, UserRole.ADMIN})
