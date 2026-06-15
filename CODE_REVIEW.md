@@ -24,3 +24,18 @@
 - No AI-generated order can bypass human confirmation before submission or realtime delivery.
 - Blocking questions were asked or documented when stack, provider, API, auth or UX details were missing.
 - A plan existed before implementation.
+
+## Pull request title standard
+
+All pull request titles for task-based changes must use this exact format:
+
+```text
+T-###: Imperative summary
+```
+
+Rules:
+
+- Start with the task ID from `TASKS.md`, zero-padded as already written there, followed by a colon and one space.
+- Use an imperative, concise English summary after the prefix, for example `T-003: Add local PostgreSQL Docker Compose setup`.
+- Do not use alternative formats such as appending `(T-003)` at the end, omitting the task ID, or changing the separator.
+- For non-task correction PRs, use `CHORE: Imperative summary` unless the user provides a more specific prefix.

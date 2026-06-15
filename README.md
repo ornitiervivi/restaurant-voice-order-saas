@@ -24,10 +24,10 @@ apps/
   waiter_app/       # Flutter Android waiter app, skeleton only in T-001
   web_console/      # Flutter Web admin + kitchen/bar console, skeleton only in T-001
 services/
-  api/              # Python FastAPI backend, skeleton only in T-001
+  api/              # Python FastAPI backend with health endpoint and local env example
 packages/
   api_contracts/    # Shared API contract artifacts, skeleton only in T-001
-infra/              # Local infrastructure, skeleton only in T-001
+infra/              # Local Docker Compose/PostgreSQL infrastructure
 ```
 
 
@@ -39,20 +39,19 @@ No code should mix these contexts. For example, an HTTP route or WebSocket gatew
 
 ## Current implementation state
 
-This repository currently contains documentation and the initial monorepo folder skeleton. TASK T-001 intentionally does not add runnable backend, Flutter, database, Docker Compose or product behavior.
+This repository currently contains documentation, the initial monorepo folder skeleton, the FastAPI health endpoint, and local Docker Compose/PostgreSQL configuration. Product behavior such as auth, migrations, CRUD, orders, realtime, voice parsing and Flutter apps is still pending future tasks.
 
 ## Local development intent
 
 Future tasks will add the runnable pieces incrementally:
 
 1. FastAPI health endpoint and backend test runner.
-2. Docker Compose with PostgreSQL.
-3. Migrations and base schema.
+2. PostgreSQL migrations and base schema.
 4. Auth, CRUD, order lifecycle, realtime, voice draft and confirmation workflows.
 5. Flutter Android and Flutter Web clients.
 6. Demo seed data and final validation flow.
 
-Until those tasks are completed, validation is limited to repository text/diff checks and verifying the expected skeleton files exist.
+Current local validation includes backend tests/compile checks when Python dependencies are available and Docker Compose checks for the PostgreSQL service.
 
 ## Working with this repository
 

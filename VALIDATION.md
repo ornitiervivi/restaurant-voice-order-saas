@@ -32,3 +32,10 @@ AI-generated orders must require human confirmation before submission. Any imple
 
 - Backend base validation commands are `cd services/api && pytest`, `cd services/api && python -m compileall src tests` and `git diff --check`.
 - In this execution environment, package installation from the external Python package index was blocked with HTTP 403 while trying to install build dependencies. Tests are present and will execute the FastAPI health check when dependencies are available; without FastAPI installed, pytest reports the dependency as skipped rather than hiding an implementation failure.
+
+
+## T-003 validation notes
+
+- Local infrastructure validation commands are `docker compose -f infra/docker-compose.yml config`, `docker compose -f infra/docker-compose.yml up -d postgres`, `docker compose -f infra/docker-compose.yml ps`, and `git diff --check`.
+- The PostgreSQL container uses local-development credentials from `infra/docker-compose.yml`/`services/api/.env.example`; no production secrets are committed.
+- The API Compose service is intentionally behind the optional `api` profile because T-003 only requires PostgreSQL startup, while full API containerization is deferred to T-020.

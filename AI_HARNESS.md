@@ -44,3 +44,4 @@ AI-generated or AI-parsed orders are drafts only. They must never be submitted, 
 - Files changed.
 - Validation executed.
 - Documentation updated.
+- Pull request title following `T-###: Imperative summary` for task-based changes, or `CHORE: Imperative summary` for non-task correction PRs.
