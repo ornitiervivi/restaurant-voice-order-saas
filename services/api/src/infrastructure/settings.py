@@ -11,6 +11,7 @@ class Settings(BaseSettings):
     app_name: str = "Restaurant Voice Order API"
     environment: str = "local"
     api_version: str = "0.1.0"
+    database_url: str = "postgresql://restaurant_voice_order:restaurant_voice_order_dev_password@localhost:5432/restaurant_voice_order"
 
     model_config = SettingsConfigDict(env_prefix="API_", env_file=".env", extra="ignore")
 

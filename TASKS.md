@@ -87,7 +87,7 @@ Each task contains: ID, objetivo, arquivos esperados, critérios de aceite, coma
   - `docker compose -f infra/docker-compose.yml up -d postgres`
   - `docker compose -f infra/docker-compose.yml ps`
 - dependências: T-002
-- status: pending
+- status: done
 
 ### T-004 - PostgreSQL migrations and base schema
 

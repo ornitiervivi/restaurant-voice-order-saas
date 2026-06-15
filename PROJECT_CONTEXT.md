@@ -87,4 +87,4 @@ The repository currently contains SDD/harness documentation and planning artifac
 
 ## Last meaningful update
 
-2026-06-15: Bootstrapped the FastAPI backend base for T-002 with a `/health` endpoint, environment-backed settings, pytest coverage and clean architecture folders under `services/api`.
+2026-06-15: Completed T-003 local Docker Compose/PostgreSQL setup with a PostgreSQL service, optional API development profile, backend `.env.example`, and database URL settings support.
