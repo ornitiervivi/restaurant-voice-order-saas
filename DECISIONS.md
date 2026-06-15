@@ -15,6 +15,7 @@
 | D-009 | 2026-06-15 | Isolate STT and parser behind application interfaces/adapters | Provider, cost, privacy and model choices may change | MVP can start with mock/demo adapters and later swap provider without domain changes |
 | D-010 | 2026-06-15 | Plan implementation in small sequential, validable increments before coding | Reduces risk and keeps Workana MVP scope controlled | TASKS.md is the executable backlog and implementation must follow dependency order |
 | D-011 | 2026-06-15 | Enforce explicit backend responsibility boundaries for domain, use cases, ports, gateways/adapters and infrastructure | Reviewer concern clarified that `services/api` is a deployable folder name, not a license for mixed service classes | Future backend tasks must keep HTTP/WebSocket/provider/database code out of domain/use-case decisions and route all business behavior through use cases and ports |
+| D-012 | 2026-06-15 | Bootstrap FastAPI backend with Python >=3.11, FastAPI >=0.115,<1.0, Pydantic Settings >=2.7,<3.0, Uvicorn >=0.34,<1.0 and pytest/httpx for tests | Establishes the smallest runnable API base while keeping future PostgreSQL, auth, WebSocket and AI adapters outside domain code | Backend base now exposes `/health`; dependency installation may require package-index access in local/CI environments |
 
 ## Deferred decisions before implementation tasks
 

@@ -27,3 +27,8 @@ Every implementation must define and run applicable validation. Documentation-on
 ## Critical acceptance validation
 
 AI-generated orders must require human confirmation before submission. Any implementation that submits, persists as submitted or emits AI-parsed orders without human confirmation fails validation.
+
+## T-002 validation notes
+
+- Backend base validation commands are `cd services/api && pytest`, `cd services/api && python -m compileall src tests` and `git diff --check`.
+- In this execution environment, package installation from the external Python package index was blocked with HTTP 403 while trying to install build dependencies. Tests are present and will execute the FastAPI health check when dependencies are available; without FastAPI installed, pytest reports the dependency as skipped rather than hiding an implementation failure.

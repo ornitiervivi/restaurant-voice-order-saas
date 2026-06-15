@@ -87,4 +87,4 @@ The repository currently contains SDD/harness documentation and planning artifac
 
 ## Last meaningful update
 
-2026-06-15: Clarified that the monorepo `services/api` folder is a deployable backend boundary while internal backend code must keep domain rules, use cases, ports, gateways/adapters and infrastructure separated.
+2026-06-15: Bootstrapped the FastAPI backend base for T-002 with a `/health` endpoint, environment-backed settings, pytest coverage and clean architecture folders under `services/api`.
