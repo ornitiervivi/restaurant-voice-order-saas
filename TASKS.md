@@ -46,7 +46,7 @@ Each task contains: ID, objetivo, arquivos esperados, critérios de aceite, coma
   - `git diff --check`
   - `find apps services packages infra -maxdepth 2 -type f | sort`
 - dependências: T-000
-- status: pending
+- status: done
 
 ### T-002 - Backend FastAPI base
 

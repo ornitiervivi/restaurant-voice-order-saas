@@ -87,4 +87,4 @@ The repository currently contains SDD/harness documentation and planning artifac
 
 ## Last meaningful update
 
-2026-06-15: Expanded Workana MVP context, scope, non-goals, assumptions and planning gate for a no-code planning increment.
+2026-06-15: Created the initial monorepo skeleton directories and README placeholders for apps, backend, shared contracts and infrastructure without adding runnable product code.
