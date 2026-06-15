@@ -68,7 +68,7 @@ Each task contains: ID, objetivo, arquivos esperados, critérios de aceite, coma
   - `cd services/api && pytest`
   - `cd services/api && python -m compileall src tests`
 - dependências: T-001
-- status: pending
+- status: done
 
 ### T-003 - Docker Compose with PostgreSQL
 
