@@ -2,6 +2,7 @@
 
 from functools import lru_cache
 
+from pydantic import SecretStr
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -12,6 +13,9 @@ class Settings(BaseSettings):
     environment: str = "local"
     api_version: str = "0.1.0"
     database_url: str = "postgresql://restaurant_voice_order:restaurant_voice_order_dev_password@localhost:5432/restaurant_voice_order"
+    jwt_secret: SecretStr = SecretStr("local-development-change-me")
+    access_token_ttl_minutes: int = 15
+    refresh_token_ttl_minutes: int = 60 * 24 * 7
 
     model_config = SettingsConfigDict(env_prefix="API_", env_file=".env", extra="ignore")
 

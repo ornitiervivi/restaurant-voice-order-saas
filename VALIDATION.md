@@ -46,3 +46,10 @@ AI-generated orders must require human confirmation before submission. Any imple
 - Migration validation commands are `cd services/api && alembic upgrade head`, `cd services/api && alembic downgrade -1 && alembic upgrade head`, `cd services/api && pytest tests/test_migrations.py`, `cd services/api && python -m compileall src tests migrations`, and `git diff --check`.
 - `tests/test_migrations.py` validates the required base tables, tenant-scoped lookup constraints, cross-tenant composite references, and database engine wiring.
 - Live migration upgrade/downgrade requires PostgreSQL to be available through `API_DATABASE_URL`. In this execution environment, `docker` was not installed and Python package installation from the external package index was blocked with HTTP 403 for build dependencies, so live Alembic upgrade/downgrade could not be executed here.
+
+
+## T-005 validation notes
+
+- Authentication validation commands are `cd services/api && pytest tests/test_auth.py`, `cd services/api && pytest`, `cd services/api && python -m compileall src tests`, and `git diff --check`.
+- `tests/test_auth.py` validates password hashing, invalid credential handling, tenant/role authorization, JWT restaurant/role claims and the `/auth/login` route when FastAPI is installed.
+- In this execution environment, FastAPI/Pydantic are not installed, so route-level tests and pre-existing FastAPI-dependent tests are skipped by `pytest.importorskip`; domain/application/security tests pass without those optional runtime packages.
