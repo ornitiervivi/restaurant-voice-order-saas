@@ -2,17 +2,25 @@
 
 ## When to use
 
-Use this skill when the task involves WebSocket, live kitchen/bar updates, event delivery or reconnection.
+Use this skill when the task involves WebSocket, live kitchen/bar updates, event delivery, reconnection, channel authorization, realtime scaling or order status propagation.
+
+## Required reading
+
+- AGENTS.md
+- PROJECT_CONTEXT.md
+- SPEC.md
+- ARCHITECTURE.md
+- VALIDATION.md
+- `.compatibility/realtime.md`
 
 ## Rules
 
-- Read AGENTS.md and relevant SDD files first.
-- Do not expand scope.
-- Ask blocking questions before risky implementation.
-- Prefer small increments.
-- Update SDD documentation after changes.
-- Register decisions, bugs and lessons when relevant.
+- Do not implement realtime code before asking blocking questions about transport, auth, tenant isolation, ordering and scaling.
+- Plan before changing files.
+- Emit only human-confirmed orders to kitchen/bar screens.
+- Ensure reconnect/idempotency behavior is defined before relying on realtime delivery.
+- Register compatibility constraints and validation evidence.
 
 ## Output
 
-State assumptions, changed files, validation and documentation updates.
+State assumptions, blocking questions, changed files, validation executed and documentation updates.

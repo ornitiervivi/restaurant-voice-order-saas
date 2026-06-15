@@ -29,17 +29,31 @@ This project is a SaaS for restaurant voice ordering. The system must allow wait
 
 AI must never submit orders directly without human confirmation.
 
+## Stack governance
+
+This project is governed by the Workana MVP stack candidates:
+
+- Android waiter app: Flutter.
+- Web admin/kitchen/bar: Flutter Web or equivalent frontend.
+- Backend: Python FastAPI or Node.js, pending explicit stack decision.
+- Database: PostgreSQL.
+- Realtime: WebSocket or equivalent realtime transport.
+- AI/voice: speech-to-text and order parser isolated behind interfaces/adapters.
+
+Java/Spring remains available only as a reusable template reference. It must not govern this project if Python FastAPI or Node.js is selected.
+
 ## Workflow
 
 1. Read SDD/harness files.
 2. Select roles from AGENT_ROLES.md.
-3. Identify blocking questions.
-4. Plan before coding.
+3. Identify blocking questions and ask them before risky implementation.
+4. Plan before coding or changing product behavior.
 5. Update project documentation.
-6. Implement the smallest safe increment.
-7. Run or define validation.
-8. Review code.
-9. Update TASKS.md, DECISIONS.md, BUGS.md, LESSONS_LEARNED.md when relevant.
+6. Register stack and architecture decisions in DECISIONS.md.
+7. Implement the smallest safe increment only after the stack/question gate is satisfied.
+8. Run or define validation.
+9. Review code and compatibility.
+10. Update TASKS.md, DECISIONS.md, BUGS.md, LESSONS_LEARNED.md when relevant.
 
 ## Scope control
 

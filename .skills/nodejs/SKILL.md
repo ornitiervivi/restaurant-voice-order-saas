@@ -2,17 +2,28 @@
 
 ## When to use
 
-Use this skill when the task involves Node.js backend, TypeScript APIs, services, validation or tests.
+Use this skill when the task involves a Node.js backend, TypeScript APIs, services, validation, PostgreSQL integration, WebSocket endpoints, AI/voice adapters or tests.
+
+## Required reading
+
+- AGENTS.md
+- PROJECT_CONTEXT.md
+- SPEC.md
+- ARCHITECTURE.md
+- VALIDATION.md
+- `.compatibility/nodejs.md`
+- `.compatibility/database.md`
+- `.compatibility/realtime.md`
 
 ## Rules
 
-- Read AGENTS.md and relevant SDD files first.
-- Do not expand scope.
-- Ask blocking questions before risky implementation.
-- Prefer small increments.
-- Update SDD documentation after changes.
-- Register decisions, bugs and lessons when relevant.
+- Do not implement backend code before asking blocking questions about backend stack selection, API contracts, auth and persistence.
+- Plan before changing files.
+- Keep TypeScript boundaries explicit between domain, application and adapters.
+- Never persist or emit AI-parsed orders as submitted without explicit human confirmation.
+- Register stack decisions and compatibility findings in SDD documents.
+- Prefer tests for domain rules, validation and confirmation gates.
 
 ## Output
 
-State assumptions, changed files, validation and documentation updates.
+State assumptions, blocking questions, changed files, validation executed and documentation updates.

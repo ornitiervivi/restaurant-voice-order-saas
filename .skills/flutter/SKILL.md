@@ -2,17 +2,26 @@
 
 ## When to use
 
-Use this skill when the task involves Android app, Flutter Web, UI flows, forms, state management or client validation.
+Use this skill when the task involves the Android waiter app, Flutter Web admin/kitchen/bar screens, UI flows, forms, routing, state management, client validation, audio capture UX or realtime client updates.
+
+## Required reading
+
+- AGENTS.md
+- PROJECT_CONTEXT.md
+- SPEC.md
+- ARCHITECTURE.md
+- VALIDATION.md
+- `.compatibility/flutter.md`
 
 ## Rules
 
-- Read AGENTS.md and relevant SDD files first.
-- Do not expand scope.
-- Ask blocking questions before risky implementation.
-- Prefer small increments.
-- Update SDD documentation after changes.
-- Register decisions, bugs and lessons when relevant.
+- Do not implement UI before asking blocking questions about target platforms, UX flow, authentication and API contracts.
+- Plan before changing files.
+- Keep the voice order confirmation screen mandatory.
+- Never allow a client flow where AI-parsed orders bypass human review.
+- Prefer small increments with validation commands documented.
+- Update SDD documentation after meaningful changes.
 
 ## Output
 
-State assumptions, changed files, validation and documentation updates.
+State assumptions, blocking questions, changed files, validation executed and documentation updates.
