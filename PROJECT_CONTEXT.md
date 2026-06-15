@@ -87,4 +87,4 @@ The repository currently contains SDD/harness documentation and planning artifac
 
 ## Last meaningful update
 
-2026-06-15: Completed T-006 admin restaurant setup CRUD baseline for restaurant profile, users, tables and products with admin-only tenant authorization tests.
+2026-06-15: Completed T-007 order lifecycle backend for opening/resuming table orders, adding explicit confirmed items, station status updates, history and close-order rejection of new items.

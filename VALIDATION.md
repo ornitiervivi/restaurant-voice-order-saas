@@ -60,3 +60,10 @@ AI-generated orders must require human confirmation before submission. Any imple
 - Admin CRUD validation commands are `cd services/api && pytest tests/test_admin_crud.py`, `cd services/api && pytest`, `cd services/api && python -m compileall src tests`, and `git diff --check`.
 - `tests/test_admin_crud.py` validates admin-only use cases for restaurant users, tables and products, tenant/role isolation, and FastAPI route behavior when FastAPI is installed.
 - In this execution environment, FastAPI/Pydantic route tests are skipped when optional runtime packages are unavailable; application-layer CRUD and tenant isolation tests pass without those optional packages.
+
+
+## T-007 validation notes
+
+- Order lifecycle validation commands are `cd services/api && pytest tests/test_order_lifecycle.py`, `cd services/api && pytest`, `cd services/api && python -m compileall src tests`, and `git diff --check`.
+- `tests/test_order_lifecycle.py` validates open/resume behavior, explicit confirmed item insertion, station-scoped status updates, tenant/role isolation, table history and closed-order rejection of new items.
+- In this execution environment, FastAPI/Pydantic route tests are skipped when optional runtime packages are unavailable; application-layer order lifecycle tests pass without those optional packages.

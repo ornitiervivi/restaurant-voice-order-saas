@@ -79,11 +79,12 @@ Forbidden coupling:
   - Owns business invariants, including that parsed voice output remains a draft until confirmed.
 - Application:
   - Contains use cases and ports/interfaces.
-  - Use cases: authenticate user, manage restaurant setup, manage tables/products/users, open/close order, create voice draft, confirm draft order, route confirmed items to kitchen/bar and update order item status.
+  - Use cases: authenticate user, manage restaurant setup, manage tables/products/users, open/resume/close order, add explicit confirmed order items, create voice draft, confirm draft order, route confirmed items to kitchen/bar and update order item status.
   - Ports/interfaces: repositories, STT, parser, transaction boundary and realtime publisher contracts consumed by use cases.
 - Adapters/gateways:
   - FastAPI REST controllers.
   - Admin setup HTTP adapter for restaurant profile, users, tables and products; T-006 uses tenant-aware in-memory wiring until PostgreSQL repositories are implemented.
+  - Order lifecycle HTTP adapter for table open/resume, explicit confirmed item insertion, station status updates, table history and close-order flow; T-007 uses tenant-aware in-memory wiring until PostgreSQL repositories are implemented.
   - FastAPI WebSocket gateway.
   - PostgreSQL repositories.
   - STT provider adapter.

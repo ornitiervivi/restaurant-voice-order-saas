@@ -165,7 +165,7 @@ Each task contains: ID, objetivo, arquivos esperados, critérios de aceite, coma
   - `cd services/api && pytest tests/test_order_lifecycle.py`
   - `cd services/api && pytest`
 - dependências: T-006
-- status: pending
+- status: done
 
 ### T-008 - Realtime WebSocket backend
 
