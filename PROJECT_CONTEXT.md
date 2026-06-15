@@ -87,4 +87,4 @@ The repository currently contains SDD/harness documentation and planning artifac
 
 ## Last meaningful update
 
-2026-06-15: Completed T-003 local Docker Compose/PostgreSQL setup with a PostgreSQL service, optional API development profile, backend `.env.example`, and database URL settings support.
+2026-06-15: Completed T-004 PostgreSQL migration baseline with Alembic, SQLAlchemy database wiring, tenant-scoped base tables, constraints, indexes, and migration validation tests.

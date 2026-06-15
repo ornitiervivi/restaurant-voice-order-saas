@@ -106,7 +106,7 @@ Each task contains: ID, objetivo, arquivos esperados, critérios de aceite, coma
   - `cd services/api && alembic downgrade -1 && alembic upgrade head`
   - `cd services/api && pytest tests/test_migrations.py`
 - dependências: T-003
-- status: pending
+- status: done
 
 ### T-005 - Authentication and role authorization
 

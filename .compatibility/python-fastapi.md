@@ -17,3 +17,9 @@ Python FastAPI is a candidate backend stack for APIs, domain use cases, WebSocke
 - FastAPI must not submit AI-parsed orders directly; order submission requires explicit human confirmation.
 - AI/STT provider integration must be isolated behind interfaces/adapters.
 - Java/Spring remains in the repository template only and must not govern this project if FastAPI is selected.
+
+
+## T-004 database compatibility
+
+- The selected async/API framework remains FastAPI, while migration execution uses synchronous SQLAlchemy/Alembic infrastructure.
+- Runtime database connectivity is centralized through `API_DATABASE_URL` and the infrastructure database engine factory.
