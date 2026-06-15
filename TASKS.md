@@ -145,7 +145,7 @@ Each task contains: ID, objetivo, arquivos esperados, critérios de aceite, coma
   - `cd services/api && pytest tests/test_admin_crud.py`
   - `cd services/api && pytest`
 - dependências: T-005
-- status: pending
+- status: done
 
 ### T-007 - Order lifecycle backend
 

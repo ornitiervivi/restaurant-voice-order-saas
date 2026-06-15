@@ -53,3 +53,10 @@ AI-generated orders must require human confirmation before submission. Any imple
 - Authentication validation commands are `cd services/api && pytest tests/test_auth.py`, `cd services/api && pytest`, `cd services/api && python -m compileall src tests`, and `git diff --check`.
 - `tests/test_auth.py` validates password hashing, invalid credential handling, tenant/role authorization, JWT restaurant/role claims and the `/auth/login` route when FastAPI is installed.
 - In this execution environment, FastAPI/Pydantic are not installed, so route-level tests and pre-existing FastAPI-dependent tests are skipped by `pytest.importorskip`; domain/application/security tests pass without those optional runtime packages.
+
+
+## T-006 validation notes
+
+- Admin CRUD validation commands are `cd services/api && pytest tests/test_admin_crud.py`, `cd services/api && pytest`, `cd services/api && python -m compileall src tests`, and `git diff --check`.
+- `tests/test_admin_crud.py` validates admin-only use cases for restaurant users, tables and products, tenant/role isolation, and FastAPI route behavior when FastAPI is installed.
+- In this execution environment, FastAPI/Pydantic route tests are skipped when optional runtime packages are unavailable; application-layer CRUD and tenant isolation tests pass without those optional packages.
