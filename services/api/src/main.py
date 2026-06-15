@@ -3,6 +3,7 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
 
+from src.adapters.http.admin_routes import router as admin_router
 from src.adapters.http.auth_routes import router as auth_router
 from src.infrastructure.settings import get_settings
 
@@ -21,6 +22,7 @@ def create_app() -> FastAPI:
     settings = get_settings()
     app = FastAPI(title=settings.app_name, version=settings.api_version)
     app.include_router(auth_router)
+    app.include_router(admin_router)
 
     @app.get("/health", response_model=HealthResponse, tags=["system"])
     async def health() -> HealthResponse:

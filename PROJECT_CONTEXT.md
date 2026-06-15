@@ -87,4 +87,4 @@ The repository currently contains SDD/harness documentation and planning artifac
 
 ## Last meaningful update
 
-2026-06-15: Completed T-005 authentication and role authorization baseline with hashed passwords, JWT token issuing, tenant/role authorization use case, and login-route tests.
+2026-06-15: Completed T-006 admin restaurant setup CRUD baseline for restaurant profile, users, tables and products with admin-only tenant authorization tests.

@@ -83,6 +83,7 @@ Forbidden coupling:
   - Ports/interfaces: repositories, STT, parser, transaction boundary and realtime publisher contracts consumed by use cases.
 - Adapters/gateways:
   - FastAPI REST controllers.
+  - Admin setup HTTP adapter for restaurant profile, users, tables and products; T-006 uses tenant-aware in-memory wiring until PostgreSQL repositories are implemented.
   - FastAPI WebSocket gateway.
   - PostgreSQL repositories.
   - STT provider adapter.
