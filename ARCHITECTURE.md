@@ -86,6 +86,7 @@ Forbidden coupling:
   - Admin setup HTTP adapter for restaurant profile, users, tables and products; T-006 uses tenant-aware in-memory wiring until PostgreSQL repositories are implemented.
   - Order lifecycle HTTP adapter for table open/resume, explicit confirmed item insertion, station status updates, table history and close-order flow; T-007 uses tenant-aware in-memory wiring until PostgreSQL repositories are implemented.
   - FastAPI WebSocket gateway.
+  - Realtime WebSocket adapter for station-scoped kitchen/bar subscriptions; T-008 uses in-process event hub and replay until external pub/sub is introduced.
   - PostgreSQL repositories.
   - STT provider adapter.
   - Parser provider/rules adapter.
@@ -125,6 +126,7 @@ All tenant-owned tables must include restaurant scoping and indexes for common q
   - order_closed
   - table_order_changed
 - Only confirmed items generate kitchen/bar events.
+- T-008 MVP reconnect/idempotency behavior: station clients connect to `/ws/restaurants/{restaurant_id}/stations/{station}` with an access token and may pass `last_event_id`; the in-process hub replays events with higher ids for the same restaurant/station. Event ids are monotonic only within the running API process and must be replaced by persistent/outbox sequencing before multi-process deployment.
 
 ## AI/voice design
 

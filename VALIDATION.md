@@ -67,3 +67,10 @@ AI-generated orders must require human confirmation before submission. Any imple
 - Order lifecycle validation commands are `cd services/api && pytest tests/test_order_lifecycle.py`, `cd services/api && pytest`, `cd services/api && python -m compileall src tests`, and `git diff --check`.
 - `tests/test_order_lifecycle.py` validates open/resume behavior, explicit confirmed item insertion, station-scoped status updates, tenant/role isolation, table history and closed-order rejection of new items.
 - In this execution environment, FastAPI/Pydantic route tests are skipped when optional runtime packages are unavailable; application-layer order lifecycle tests pass without those optional packages.
+
+
+## T-008 validation notes
+
+- Realtime validation commands are `cd services/api && pytest tests/test_realtime.py`, `cd services/api && pytest`, `cd services/api && python -m compileall src tests`, and `git diff --check`.
+- `tests/test_realtime.py` validates confirmed-only publication through the order use case, tenant/station scoping, replay by `last_event_id`, status-update events, and WebSocket authentication behavior when FastAPI WebSocket test dependencies are installed.
+- In this execution environment, FastAPI/Pydantic route tests are skipped when optional runtime packages are unavailable; application-layer realtime hub tests pass without those optional packages.

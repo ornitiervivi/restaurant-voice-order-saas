@@ -184,7 +184,7 @@ Each task contains: ID, objetivo, arquivos esperados, critérios de aceite, coma
   - `cd services/api && pytest tests/test_realtime.py`
   - `cd services/api && pytest`
 - dependências: T-007
-- status: pending
+- status: done
 
 ### T-009 - Flutter Android waiter app bootstrap
 
