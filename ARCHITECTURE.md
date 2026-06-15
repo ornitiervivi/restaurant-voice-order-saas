@@ -107,7 +107,7 @@ Forbidden coupling:
 - kitchen_tickets or station_events
 - audit_events
 
-All tenant-owned tables must include restaurant scoping and indexes for common queries.
+All tenant-owned tables must include restaurant scoping and indexes for common queries. The T-004 base schema uses Alembic migrations with composite tenant-scoped foreign keys on order/table/user/product relationships to prevent cross-restaurant references at the database boundary.
 
 ## Realtime design
 

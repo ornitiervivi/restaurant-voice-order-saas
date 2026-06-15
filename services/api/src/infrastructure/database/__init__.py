@@ -1,0 +1,5 @@
+"""Database infrastructure package."""
+
+from src.infrastructure.database.engine import create_database_engine
+
+__all__ = ["create_database_engine"]

@@ -39,3 +39,10 @@ AI-generated orders must require human confirmation before submission. Any imple
 - Local infrastructure validation commands are `docker compose -f infra/docker-compose.yml config`, `docker compose -f infra/docker-compose.yml up -d postgres`, `docker compose -f infra/docker-compose.yml ps`, and `git diff --check`.
 - The PostgreSQL container uses local-development credentials from `infra/docker-compose.yml`/`services/api/.env.example`; no production secrets are committed.
 - The API Compose service is intentionally behind the optional `api` profile because T-003 only requires PostgreSQL startup, while full API containerization is deferred to T-020.
+
+
+## T-004 validation notes
+
+- Migration validation commands are `cd services/api && alembic upgrade head`, `cd services/api && alembic downgrade -1 && alembic upgrade head`, `cd services/api && pytest tests/test_migrations.py`, `cd services/api && python -m compileall src tests migrations`, and `git diff --check`.
+- `tests/test_migrations.py` validates the required base tables, tenant-scoped lookup constraints, cross-tenant composite references, and database engine wiring.
+- Live migration upgrade/downgrade requires PostgreSQL to be available through `API_DATABASE_URL`. In this execution environment, `docker` was not installed and Python package installation from the external package index was blocked with HTTP 403 for build dependencies, so live Alembic upgrade/downgrade could not be executed here.
