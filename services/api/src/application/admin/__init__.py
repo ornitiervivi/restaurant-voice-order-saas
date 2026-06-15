@@ -1,0 +1,1 @@
+"""Admin setup application package."""
