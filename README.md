@@ -30,6 +30,13 @@ packages/
 infra/              # Local infrastructure, skeleton only in T-001
 ```
 
+
+## Architecture responsibility boundaries
+
+In this repository, `services/api` is the folder for the deployable backend API service. Inside that backend, implementation must still be separated by responsibility: domain rules stay in `domain`, application workflows stay in use cases, external protocol/provider code stays in gateways/adapters, and technical wiring stays in infrastructure.
+
+No code should mix these contexts. For example, an HTTP route or WebSocket gateway must call an application use case instead of implementing order-confirmation logic directly, and STT/parser adapters must never persist submitted order items or emit kitchen/bar events.
+
 ## Current implementation state
 
 This repository currently contains documentation and the initial monorepo folder skeleton. TASK T-001 intentionally does not add runnable backend, Flutter, database, Docker Compose or product behavior.

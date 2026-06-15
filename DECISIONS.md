@@ -14,6 +14,7 @@
 | D-008 | 2026-06-15 | Use authenticated WebSocket as MVP realtime transport | Kitchen/bar and waiter status updates need low-latency bidirectional delivery | Realtime tasks must define channel auth, tenant isolation, ordering, idempotency and reconnect behavior |
 | D-009 | 2026-06-15 | Isolate STT and parser behind application interfaces/adapters | Provider, cost, privacy and model choices may change | MVP can start with mock/demo adapters and later swap provider without domain changes |
 | D-010 | 2026-06-15 | Plan implementation in small sequential, validable increments before coding | Reduces risk and keeps Workana MVP scope controlled | TASKS.md is the executable backlog and implementation must follow dependency order |
+| D-011 | 2026-06-15 | Enforce explicit backend responsibility boundaries for domain, use cases, ports, gateways/adapters and infrastructure | Reviewer concern clarified that `services/api` is a deployable folder name, not a license for mixed service classes | Future backend tasks must keep HTTP/WebSocket/provider/database code out of domain/use-case decisions and route all business behavior through use cases and ports |
 
 ## Deferred decisions before implementation tasks
 

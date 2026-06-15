@@ -54,26 +54,44 @@ FastAPI is selected because the MVP has AI/STT/parser integration needs, strong 
   TASKS.md
 ```
 
+## Backend responsibility glossary
+
+The repository path `services/api` means a deployable backend service/process. It does not mean that business rules should be implemented in generic service classes. Inside the API codebase, names and dependencies must preserve these boundaries:
+
+- **Domain entity/value object**: business concepts and invariants that do not depend on FastAPI, databases, WebSocket clients, AI providers or frameworks.
+- **Use case**: one application action that coordinates domain objects and ports, such as `CreateVoiceDraft`, `ConfirmDraftOrder` or `OpenOrder`. A use case owns workflow orchestration and transaction intent, but not HTTP parsing, SQL details or provider SDK calls.
+- **Port/interface**: dependency contract required by a use case, such as `OrderRepository`, `SpeechToTextPort`, `OrderParserPort` or `RealtimeEventPublisher`.
+- **Gateway/adapter**: infrastructure implementation of a port or external boundary, such as a FastAPI route/controller, WebSocket gateway, PostgreSQL repository, STT provider adapter or parser adapter. Gateways translate protocols and call use cases; they must not own domain decisions.
+- **Infrastructure**: technical wiring, settings, database sessions, security primitives, provider clients and framework configuration. Infrastructure composes adapters and use cases but must not bypass use cases for business behavior.
+
+Forbidden coupling:
+
+- FastAPI routes/controllers must not contain order-confirmation business rules; they validate transport input and invoke use cases.
+- Repositories must not decide whether a draft can be submitted; they persist and query data requested through ports.
+- STT/parser adapters must not create submitted order items or publish kitchen/bar events; they only return draft outputs to use cases.
+- WebSocket gateways must not emit AI drafts as station orders; they publish only events produced after explicit confirmation use cases.
+- Use cases must depend on ports/interfaces, not concrete PostgreSQL, WebSocket, FastAPI or provider SDK implementations.
+
 ## Backend boundaries
 
 - Domain:
   - Restaurant, User, Table, Product, Order, OrderItem, VoiceCommand, ParsedOrderCommand, KitchenTicket.
+  - Owns business invariants, including that parsed voice output remains a draft until confirmed.
 - Application:
-  - Authenticate user.
-  - Manage restaurant setup.
-  - Manage tables/products/users.
-  - Open/close order.
-  - Create voice draft.
-  - Confirm draft order.
-  - Route confirmed items to kitchen/bar.
-  - Update order item status.
-- Adapters:
+  - Contains use cases and ports/interfaces.
+  - Use cases: authenticate user, manage restaurant setup, manage tables/products/users, open/close order, create voice draft, confirm draft order, route confirmed items to kitchen/bar and update order item status.
+  - Ports/interfaces: repositories, STT, parser, transaction boundary and realtime publisher contracts consumed by use cases.
+- Adapters/gateways:
   - FastAPI REST controllers.
   - FastAPI WebSocket gateway.
   - PostgreSQL repositories.
   - STT provider adapter.
   - Parser provider/rules adapter.
   - Demo/mock adapters.
+  - Translate external protocols/provider APIs into application calls without owning domain rules.
+- Infrastructure:
+  - Database/session setup, settings, auth primitives, dependency injection/composition and external clients.
+  - Wires concrete adapters to application ports without bypassing use cases.
 
 ## Database model outline
 
